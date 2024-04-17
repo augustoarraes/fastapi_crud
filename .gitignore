@@ -1,6 +1,33 @@
-__pycache__
+# OS files
 .DS_store
-env/
-venv
+
+# Cache Python
+__pycache__
 .pytest_cache
 .covarege
+
+# dotenv environment variables file
+.env
+env/
+venv
+
+# Applications
+*.app
+*.exe
+*.war
+*.bat
+*.bin
+*.dll
+
+# Large media files
+*.mp4
+*.tiff
+*.avi
+*.flv
+*.mov
+*.wmv
+upload/*
+
+# Temporary files
+*.tmp
+tmp/
