@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13-alpine
+    container_name: fastapi_db
+    ports:
+      - 5432:5432
+    volumes:
+      - ./dump-sample.sql:/docker-entrypoint-initdb.d/dump-sample.sql
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=sua_senha
+      - POSTGRES_DB=fastapiDB
+    networks:
+      - lab-network
+  prometheus:
+    image: prom/prometheus
+    container_name: fastapi_prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    networks:
+      - lab-network
+  fastapi:
+    build: .
+    container_name: fastapi_crud
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    volumes: 
+      - .:/code
+    networks:
+      - lab-network
+
+volumes:
+  postgres_data:
+
+networks: 
+  lab-network:
+    driver: bridge
+
+
+# docker-compose up -d
+# docker start 
+#
+# App:
+# http://127.0.0.1:3000/
+# http://127.0.0.1:3000/docs
+#
+#
+# Prometheus:
+# http://127.0.0.1:9090/

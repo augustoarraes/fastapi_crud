@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+
+sqlalchemy
+psycopg2-binary
+pydantic
+
+python-dotenv
+
+httpx
+pytest
+pytest-cov
+
+prometheus-fastapi-instrumentator
+

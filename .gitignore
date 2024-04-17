@@ -1,0 +1,6 @@
+__pycache__
+.DS_store
+env/
+venv
+.pytest_cache
+.covarege
