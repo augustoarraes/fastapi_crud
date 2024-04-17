@@ -33,7 +33,7 @@ services:
     depends_on:
       - db
     volumes: 
-      - .:/code
+      - .:/app
     networks:
       - lab-network
 

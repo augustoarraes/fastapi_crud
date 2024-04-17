@@ -9,7 +9,7 @@ from prometheus_fastapi_instrumentator import Instrumentator
 app = FastAPI(title='FastAPI CRUD Sample', description='Microsservice CRUD Sample, develop by Augusto Arraes')
 
 
-@app.post("/create", response_model=ProdutoData, status_code=status.HTTP_201_CREATED)
+@app.post("/create", response_model=ProdutoData, status_code=status.HTTP_201_CREATED, tags=['CRUD'])
 async def create_produto(produto: ProdutoCreate):
     print(str(produto))
     # Chamar aqui o Business.py... outros chamam de Service.py
@@ -19,13 +19,13 @@ async def create_produto(produto: ProdutoCreate):
     return produto
 
 
-@app.get("/all")
+@app.get("/all", tags=['CRUD'])
 async def getAllProdutos():
     produtos = session.query(ProdutoModel).filter(ProdutoModel.deleted==False).all()
     return produtos
 
 
-@app.get("/produto/{id}", response_model=ProdutoData)
+@app.get("/produto/{id}", response_model=ProdutoData, tags=['CRUD'])
 def getProduto(id: int):
     produto = session.query(ProdutoModel).get(id)
     if not produto:
@@ -33,7 +33,7 @@ def getProduto(id: int):
     return produto
 
 
-@app.put("/update/{id}", response_model=ProdutoData)
+@app.put("/update/{id}", response_model=ProdutoData, tags=['CRUD'])
 def updateProduto(id: int, produtoUpd: ProdutoUpdate):
     produto = session.query(ProdutoModel).get(id)
     if not produto:
@@ -45,7 +45,7 @@ def updateProduto(id: int, produtoUpd: ProdutoUpdate):
     return produto
 
 
-@app.delete("/del/{id}")
+@app.delete("/del/{id}", tags=['CRUD'])
 def deleteProduto(id: int):
     produto = session.query(ProdutoModel).get(id)
     if produto:
