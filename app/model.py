@@ -11,6 +11,8 @@ class ProdutoModel(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     nome = Column(String)
     valor = Column(Float, default=0)
+    descricao = Column(String)
     created = Column(DateTime, default=datetime.now().strftime("%m-%d-%Y %H:%M:%S.%f"))
+    updated_at = Column(DateTime, default=datetime.now().strftime("%m-%d-%Y %H:%M:%S.%f"), onupdate=datetime.now().strftime("%m-%d-%Y %H:%M:%S.%f"))
     deleted = deferred(Column(Boolean, default=False))
 

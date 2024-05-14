@@ -1,4 +1,3 @@
-#FROM tiangolo/uvicorn-gunicorn:python3.9-alpine3.14
 FROM python:3.9.19-alpine
 
 LABEL maintainer="Augusto Arraes <arraes.augusto@gmail.com>"
@@ -17,8 +16,11 @@ COPY . .
 
 EXPOSE 3000
 
-# --reload
-CMD ["uvicorn", "app.api:app", "--reload", "--host", "0.0.0.0", "--port", "3000"]
+# Dar permissão de execução ao script
+RUN chmod +x start.sh
+
+# Command to run the application
+CMD ["/app/start.sh"]
 
 
 # Run Container alone:

@@ -27,6 +27,14 @@ user: postgres \
 pass: sua_senha 
 
 
+## Migrations
+```bash
+# manual:
+alembic revision -m "Adicionar campo ..."
+# e ainda temos a possibilidade de gerar auto:
+alembic revision --autogenerate -m "Adicionar coluna .."
+```
+
 
 ## Opcional para quem estiver ingressando no FastAPI
 - Makefile
