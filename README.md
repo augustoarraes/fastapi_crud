@@ -43,3 +43,17 @@ pytest --cov=api
 ```
 
 
+## Boas Práticas na Codificação
+
+Um bom pré-requisito é ter uma boa massa de dados, banco de dados local interessante para o consumo dos Endpoints.
+Sempre avaliar as Regras de Negócio.
+
+1. Sempre TESTE, regra das regras
+2. Teste os Endpoints com campos vazios, diante às Regras de Negócio (RN)
+3. Tratamento de Duplicidade em endpoints POST de inserção
+4. Endpoints de Filtro de Consulta/Pesquisa:
+4.1. Aceitar de campos nulos até cada campo para afinar o filtro da query
+4.2. Fragmentar a Query a cada campo: `if campo: ... <parte da query filter SQLAlchemy>` 
+4.3. De acordo com RN específicas de Filtro, operadores `or_` e `and_` do SQLAlchemy
+4.4. Testar todas as possibilidades do Filtro
+5. Retorne status code 400 para condições não atendidas
