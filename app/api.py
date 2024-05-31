@@ -3,10 +3,24 @@ from app.model import ProdutoModel
 from app.schema import ProdutoData, ProdutoCreate, ProdutoUpdate, Produtos
 from app.db import session
 from typing import List
+import os
+from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
 from prometheus_fastapi_instrumentator import Instrumentator
 
 
+load_dotenv()
+
 app = FastAPI(title='FastAPI CRUD Sample', description='Microsservice CRUD Sample, develop by Augusto Arraes')
+
+origins = os.getenv("CORS_ORIGINS").split(",")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins, # [*]
+    allow_credentials=True,
+    allow_methods=["*"],  # Permitir todos os métodos (GET, POST, etc.)
+    allow_headers=["*"],  # Permitir todos os cabeçalhos
+)
 
 
 @app.post("/create", response_model=ProdutoData, status_code=status.HTTP_201_CREATED, tags=['CRUD'])
