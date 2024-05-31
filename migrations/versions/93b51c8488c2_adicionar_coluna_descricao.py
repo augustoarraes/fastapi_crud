@@ -17,9 +17,20 @@ down_revision: Union[str, None] = 'e0685b990897'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
+def column_exists(table_name, column_name):
+    conn = op.get_bind()
+    query = sa.text(
+        "SELECT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name=:table AND column_name=:column)"
+    ).bindparams(table=table_name, column=column_name)
+    result = conn.execute(query).scalar()
+    return result
 
 def upgrade() -> None:
-    op.add_column('Produto', sa.Column('descricao', sa.String))
+    try:
+        if not column_exists('Produto', 'descricao'):
+            op.add_column('Produto', sa.Column('descricao', sa.String))
+    except Exception as e:
+        print(f"Error adding column: {e}")
 
 
 def downgrade() -> None:
