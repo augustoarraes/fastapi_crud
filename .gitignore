@@ -31,3 +31,6 @@ upload/*
 # Temporary files
 *.tmp
 tmp/
+
+# Logs
+*.log

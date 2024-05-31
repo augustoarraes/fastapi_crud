@@ -4,9 +4,12 @@ from app.schema import ProdutoData, ProdutoCreate, ProdutoUpdate, Produtos
 from app.db import session
 from typing import List
 from prometheus_fastapi_instrumentator import Instrumentator
+from app import utils
 
 
 app = FastAPI(title='FastAPI CRUD Sample', description='Microsservice CRUD Sample, develop by Augusto Arraes')
+
+app.include_router(utils.router)
 
 
 @app.post("/create", response_model=ProdutoData, status_code=status.HTTP_201_CREATED, tags=['CRUD'])
