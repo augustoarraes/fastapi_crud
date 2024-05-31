@@ -1,6 +1,7 @@
 from fastapi import FastAPI, status, HTTPException
 from app.model import ProdutoModel
 from app.schema import ProdutoData, ProdutoCreate, ProdutoUpdate, Produtos
+from app.business import historico
 from app.db import session
 from typing import List
 from prometheus_fastapi_instrumentator import Instrumentator
@@ -55,6 +56,11 @@ def deleteProduto(id: int):
     else:
         raise HTTPException(status_code=404, detail=f"Item não encontrado")
     return {"msg": "Item excluído!"}
+
+
+@app.get("/historico", tags=['CRUD'])
+async def historicoProdutos(filtros: str=None, page: int=1, page_size: int=10):
+    return historico(filtros, page, page_size)
 
 
 @app.get("/ping")
