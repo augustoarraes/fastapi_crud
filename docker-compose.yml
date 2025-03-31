@@ -9,8 +9,8 @@ services:
     volumes:
       - ./dump-sample.sql:/docker-entrypoint-initdb.d/dump-sample.sql
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=sua_senha
+      - POSTGRES_USER=
+      - POSTGRES_PASSWORD=
       - POSTGRES_DB=fastapiDB
     networks:
       - lab-network
