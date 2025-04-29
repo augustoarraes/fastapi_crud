@@ -1,4 +1,4 @@
-# Microsserviço CRUD FastAPI
+# FullStack Microsserviço CRUD React JS e Python FastAPI
 
 Uma Aplicação FullStack onde temos como frontend em React JS, backend em Python FastAPI e banco de dados Postgres.
 - Pasta `fastapi_crud` é o backend da aplicação
