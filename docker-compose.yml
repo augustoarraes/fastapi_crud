@@ -9,8 +9,8 @@ services:
     volumes:
       - ./dump-sample.sql:/docker-entrypoint-initdb.d/dump-sample.sql
     environment:
-      - POSTGRES_USER=
-      - POSTGRES_PASSWORD=
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=q7963q
       - POSTGRES_DB=fastapiDB
     networks:
       - lab-network
@@ -26,14 +26,26 @@ services:
     networks:
       - lab-network
   fastapi:
-    build: .
+    build: ./fastapi_crud
     container_name: fastapi_crud
     ports:
-      - 3000:3000
+      - 5000:5000
     depends_on:
       - db
     volumes: 
-      - .:/app
+      - ./fastapi_crud:/app
+    networks:
+      - lab-network
+  frontend:
+    build: ./frontend-react-produtos
+    container_name: frontend-react-produtos
+    ports:
+      - "3000:80" # Porta externa 3000, interna 80 do nginx
+    depends_on:
+      - fastapi
+    restart: always
+    #volumes: 
+    #  - ./frontend-react-produtos:/src
     networks:
       - lab-network
 
@@ -49,8 +61,8 @@ networks:
 # docker start 
 #
 # App:
-# http://127.0.0.1:3000/
-# http://127.0.0.1:3000/docs
+# http://127.0.0.1:5000/
+# http://127.0.0.1:5000/docs
 #
 #
 # Prometheus:

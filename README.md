@@ -1,6 +1,13 @@
 # Microsserviço CRUD FastAPI
 
+Uma Aplicação FullStack onde temos como frontend em React JS, backend em Python FastAPI e banco de dados Postgres.
+- Pasta `fastapi_crud` é o backend da aplicação
+- E, `frontend-react-produtos` é frontend da aplicação
+
+
 ## Subir a aplicação rápido
+
+Antes de subir a aplicação, verificar as credenciais, principalmente do BD, no `docker-compose.yml` e no `.env` do backend.
 
 ```bash
 docker compose up -d
@@ -10,12 +17,16 @@ docker restart fastapi_crud
 # caso queira verificar o log de execução do microsserviço
 docker logs -f fastapi_crud
 ```
-Agora é so ver as rotas disponíveis para testar o CRUD: `http://127.0.0.1:3000/docs`
+
+Acessando a Aplicação [http://localhost:3000](http://localhost:3000)
+
+Agora é so ver as rotas REST disponíveis para testar o backdend direto (Swagger da API): [http://127.0.0.1:5000/docs](http://127.0.0.1:5000/docs)
 
 E opcional tem a monitoração do serviço: `http://127.0.0.1:9090/`
 
 
 ## Banco de Dados
+
 Sugiro ter o pgAdmin para acessar o banco de dados.
 ```bash
 docker run --add-host=host.docker.internal:172.17.0.1 --name pgAdmin -p 8081:80 -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=admin -d dpage/pgadmin4
@@ -27,8 +38,8 @@ user: postgres \
 pass: sua_senha 
 
 
-
 ## Opcional para quem estiver ingressando no FastAPI
+
 - Makefile
 - app/test_api.py
 - prometheus.yml
@@ -57,3 +68,9 @@ Sempre avaliar as Regras de Negócio.
 4.3. De acordo com RN específicas de Filtro, operadores `or_` e `and_` do SQLAlchemy
 4.4. Testar todas as possibilidades do Filtro
 5. Retorne status code 400 para condições não atendidas
+
+
+## Contato
+
+Augusto Arraes
+[site](http://linktr.ee/a.arraes)

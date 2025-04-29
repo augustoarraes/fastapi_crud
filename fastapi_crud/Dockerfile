@@ -15,15 +15,15 @@ RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 5000
 
 # --reload
-CMD ["uvicorn", "app.api:app", "--reload", "--host", "0.0.0.0", "--port", "3000"]
+CMD ["uvicorn", "app.api:app", "--reload", "--host", "0.0.0.0", "--port", "5000"]
 
 
 # Run Container alone:
 # docker build -t fastapi.crud .
-# docker run --name fastapi.crud --add-host=host.docker.internal:172.17.0.1 -v ${PWD}/:/app -p 3000:3000 -d fastapi.crud
+# docker run --name fastapi.crud --add-host=host.docker.internal:172.17.0.1 -v ${PWD}/:/app -p 5000:5000 -d fastapi.crud
 #
-# http://127.0.0.1:3000/
-# http://127.0.0.1:3000/docs
+# http://127.0.0.1:5000/
+# http://127.0.0.1:5000/docs

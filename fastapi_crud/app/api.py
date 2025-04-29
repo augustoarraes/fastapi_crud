@@ -3,11 +3,20 @@ from app.model import ProdutoModel
 from app.schema import ProdutoData, ProdutoCreate, ProdutoUpdate, Produtos
 from app.db import session
 from typing import List
+from fastapi.middleware.cors import CORSMiddleware
 from prometheus_fastapi_instrumentator import Instrumentator
 
 
 app = FastAPI(title='FastAPI CRUD Sample', description='Microsservice CRUD Sample, develop by Augusto Arraes')
 
+# Configurações de CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # ou lista de origens específicas: ["https://meusite.com"]
+    allow_credentials=True,
+    allow_methods=["*"],  # ou lista: ["GET", "POST", "PUT", "DELETE"]
+    allow_headers=["*"],  # ou lista específica de headers
+)
 
 @app.post("/create", response_model=ProdutoData, status_code=status.HTTP_201_CREATED, tags=['CRUD'])
 async def create_produto(produto: ProdutoCreate):

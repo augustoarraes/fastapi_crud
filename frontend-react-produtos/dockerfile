@@ -1,0 +1,23 @@
+# Etapa 1: Build da aplicação
+FROM node:18 AS build
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+RUN npm run build
+
+# Etapa 2: Servir com Nginx
+FROM nginx:alpine
+
+# Copia o build gerado para a pasta padrão do nginx
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Copia um nginx.conf personalizado (opcional)
+# COPY nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 3000
+
+CMD ["nginx", "-g", "daemon off;"]

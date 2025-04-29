@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  frontend:
+    build: .
+    container_name: frontend-react-produtos
+    ports:
+      - "3000:80" # Porta externa 3000, interna 80 do nginx
+    restart: always
