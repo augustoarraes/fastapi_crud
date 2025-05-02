@@ -13,6 +13,8 @@ class ProdutoData(BaseModel):
     id: int
     nome: str
     valor: float
+    status: str
+    estoque_min: int
     created: datetime
 
 
@@ -23,3 +25,5 @@ class Produtos(BaseModel):
 class ProdutoUpdate(BaseModel):
     nome: Optional[str] = None
     valor: Optional[float] = None
+    status: Optional[str] = None
+    estoque_min: Optional[str] = None

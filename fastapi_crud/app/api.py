@@ -50,6 +50,8 @@ def updateProduto(id: int, produtoUpd: ProdutoUpdate):
     if produto:
         produto.nome = produtoUpd.nome
         produto.valor = produtoUpd.valor
+        produto.status = produtoUpd.status
+        produto.estoque_min = produtoUpd.estoque_min
         session.commit()
     return produto
 

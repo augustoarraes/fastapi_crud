@@ -48,6 +48,8 @@ CREATE TABLE public."Produto" (
     id bigint NOT NULL,
     nome character varying,
     valor double precision,
+    status character varying,
+    estoque_min int,
     created timestamp without time zone,
     deleted boolean DEFAULT false
 );
@@ -99,17 +101,17 @@ ALTER TABLE ONLY public."Produto" ALTER COLUMN id SET DEFAULT nextval('public.fa
 -- Data for Name: Produto; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public."Produto" VALUES (10, 'note', 200, '2023-07-17 13:19:02.905234', false);
-INSERT INTO public."Produto" VALUES (15, 'keyboard', 200, '2023-07-17 13:42:37.360041', false);
-INSERT INTO public."Produto" VALUES (16, 'quadro', 200, '2023-07-17 14:59:51.577694', false);
-INSERT INTO public."Produto" VALUES (20, 'mesa', 200, '2023-07-17 15:31:12.76238', true);
-INSERT INTO public."Produto" VALUES (21, 'box', 200, '2023-07-17 19:28:12.380309', false);
-INSERT INTO public."Produto" VALUES (3, 'cell', 200, '2025-04-29 11:39:04.82372', false);
-INSERT INTO public."Produto" VALUES (9, 'note', 200, '2025-04-29 11:39:04.82372', false);
-INSERT INTO public."Produto" VALUES (1, 'mochila', 30, '2025-04-29 11:39:04.82372', true);
-INSERT INTO public."Produto" VALUES (22, 'Mochila', 899, '2025-04-29 11:37:44.506824', false);
-INSERT INTO public."Produto" VALUES (2, 'monitor', 1200, '2025-04-29 11:39:04.82372', false);
-INSERT INTO public."Produto" VALUES (23, 'Churrasqueira Eletrica', 1300, '2025-04-29 11:37:44.506824', false);
+INSERT INTO public."Produto" VALUES (10, 'note', 200, 'A', 100, '2023-07-17 13:19:02.905234', false);
+INSERT INTO public."Produto" VALUES (15, 'keyboard', 200, 'A', 100, '2023-07-17 13:42:37.360041', false);
+INSERT INTO public."Produto" VALUES (16, 'quadro', 200, 'A', 100, '2023-07-17 14:59:51.577694', false);
+INSERT INTO public."Produto" VALUES (20, 'mesa', 200, 'A', 100, '2023-07-17 15:31:12.76238', true);
+INSERT INTO public."Produto" VALUES (21, 'box', 200, 'A', 100, '2023-07-17 19:28:12.380309', false);
+INSERT INTO public."Produto" VALUES (3, 'cell', 200, 'A', 100, '2025-04-29 11:39:04.82372', false);
+INSERT INTO public."Produto" VALUES (9, 'note', 200, 'A', 100, '2025-04-29 11:39:04.82372', false);
+INSERT INTO public."Produto" VALUES (1, 'mochila', 30, 'A', 100, '2025-04-29 11:39:04.82372', true);
+INSERT INTO public."Produto" VALUES (22, 'Mochila', 899, 'A', 100, '2025-04-29 11:37:44.506824', false);
+INSERT INTO public."Produto" VALUES (2, 'monitor', 1200, 'A', 100, '2025-04-29 11:39:04.82372', false);
+INSERT INTO public."Produto" VALUES (23, 'Churrasqueira Eletrica', 1300, 'A', 100, '2025-04-29 11:37:44.506824', false);
 
 
 --
